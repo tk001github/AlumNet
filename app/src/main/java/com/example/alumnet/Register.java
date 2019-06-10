@@ -14,15 +14,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
-    EditText etFirstName, etLastName, etEmail, et_mName, etPassword, etPasswordConfirm;
+    EditText etFirstName, etLastName, etEmail, etMiddleName, etPassword, etPasswordConfirm;
     Button buttonRegister;
     TextView tv_login;
 
     private FirebaseAuth auth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +33,20 @@ public class Register extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        etFirstName = findViewById(R.id.et_firstName);
-        etLastName = findViewById(R.id.et_lastName);
-        etEmail= findViewById(R.id.et_email);
-        et_mName = findViewById(R.id.et_middleName);
-        etPassword = findViewById(R.id.reg_password);
-        etPasswordConfirm = findViewById(R.id.et_passwordConfirm);
-        buttonRegister = findViewById(R.id.button_register);
-        tv_login = findViewById(R.id.tv_login);
+        //Get root reference to firebase db
+        final DatabaseReference rootref = FirebaseDatabase.getInstance().getReference("reg");
+
+        etFirstName = (EditText) findViewById(R.id.et_firstName);
+        etLastName = (EditText)findViewById(R.id.et_lastName);
+        etEmail= (EditText)findViewById(R.id.et_email);
+        etMiddleName = (EditText)findViewById(R.id.et_middleName);
+        etPassword = (EditText)findViewById(R.id.reg_password);
+        etPasswordConfirm = (EditText)findViewById(R.id.et_passwordConfirm);
+        buttonRegister = (Button) findViewById(R.id.button_register);
+        tv_login = (TextView) findViewById(R.id.tv_login);
+
+
+
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,12 +55,15 @@ public class Register extends AppCompatActivity {
             }
         });
 
+
+
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                String passConfrm = etPasswordConfirm.getText().toString().trim();
+                String passconfirm = etPasswordConfirm.getText().toString().trim();
+
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
@@ -64,7 +74,7 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                if(passConfrm != password){
+                if(!passconfirm.equals(password)){
                     Toast.makeText(getApplicationContext(), "Password not matched!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -74,11 +84,24 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                FirebaseDatabase db = FirebaseDatabase.getInstance();
-
 
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+
+                            private void addData() {
+                                String email = etEmail.getText().toString().trim();
+                                String fname = etFirstName.getText().toString().toUpperCase();
+                                String mname = etMiddleName.getText().toString().toUpperCase();
+                                String lname = etLastName.getText().toString().toUpperCase();
+
+                                FirebaseUser user=FirebaseAuth.getInstance().getCurrentUser();
+                                String id=user.getUid();
+
+                                RegData newdata=new RegData(fname,mname,lname,email);
+                                rootref.child(id).setValue(newdata);
+
+                            }
+
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 Toast.makeText(Register.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
@@ -88,15 +111,21 @@ public class Register extends AppCompatActivity {
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(Register.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
+
                                 } else {
+                                    addData();
                                     startActivity(new Intent(Register.this, MainActivity.class));
                                     finish();
                                 }
                             }
+
                         });
+
             }
         });
 
 
     }
+
+
 }
