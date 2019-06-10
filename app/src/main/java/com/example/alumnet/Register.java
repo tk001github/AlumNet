@@ -20,12 +20,12 @@ public class Register extends AppCompatActivity {
 
         etFirstName = findViewById(R.id.et_firstName);
         etLastName = findViewById(R.id.et_lastName);
-        etUsername = findViewById(R.id.et_username);
+        etUsername = findViewById(R.id.reg_username);
         etBatch = findViewById(R.id.et_batch);
-        etPassword = findViewById(R.id.et_password);
+        etPassword = findViewById(R.id.reg_password);
         etPasswordConfirm = findViewById(R.id.et_passwordConfirm);
         buttonRegister = findViewById(R.id.button_register);
-        tv_login = findViewById(R.id.tv_register);
+        tv_login = findViewById(R.id.tv_login);
         tv_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -27,7 +27,7 @@
 
     <!--to be converted to Spinner later-->
     <EditText
-        android:id="@+id/et_username"
+        android:id="@+id/reg_username"
         android:layout_width="200dp"
         android:hint="@string/username"
         android:layout_height="40dp" />
@@ -38,7 +38,7 @@
         android:layout_height="40dp" />
 
     <EditText
-        android:id="@+id/et_password"
+        android:id="@+id/reg_password"
         android:layout_width="200dp"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -70,7 +70,7 @@
             android:textSize="17dp"/>
 
         <TextView
-            android:id="@+id/button_login"
+            android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login_switch"
