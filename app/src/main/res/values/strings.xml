@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">AlumNet</string>
-    <string name="username">username</string>
+    <string name="email">Email</string>
     <string name="password">password</string>
     <string name="login">Login</string>
     <string name="logtext">Not Registered Yet?</string>
     <string name="register_switch">Register Now</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
-    <string name="batch">batch</string>
+    <string name="m_name">Middle Name</string>
     <string name="confirm_password">confirm password</string>
     <string name="register_btn">register</string>
     <string name="regtext">Already registerd?</string>
