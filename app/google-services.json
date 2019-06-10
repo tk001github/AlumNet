@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "649328714369",
+    "firebase_url": "https://alumnet-b0edb.firebaseio.com",
+    "project_id": "alumnet-b0edb",
+    "storage_bucket": "alumnet-b0edb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649328714369:android:3e95653513e30c1f",
+        "android_client_info": {
+          "package_name": "com.example.alumnet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649328714369-sm9k17acbgqlq85pe0sg1f17u7ikscvd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfNnHJHiQH9TF3SfKgOSMBHj8YICbBd1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649328714369-sm9k17acbgqlq85pe0sg1f17u7ikscvd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

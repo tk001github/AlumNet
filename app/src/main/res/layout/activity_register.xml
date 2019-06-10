@@ -19,22 +19,25 @@
         android:layout_width="200dp"
         android:hint="@string/first_name"
         android:layout_height="40dp" />
+
+    <EditText
+        android:id="@+id/et_middleName"
+        android:layout_width="200dp"
+        android:hint="@string/m_name"
+        android:layout_height="40dp" />
+
     <EditText
         android:id="@+id/et_lastName"
         android:layout_width="200dp"
         android:hint="@string/last_name"
         android:layout_height="40dp" />
 
-    <!--to be converted to Spinner later-->
+
     <EditText
-        android:id="@+id/reg_username"
+        android:id="@+id/et_email"
         android:layout_width="200dp"
-        android:hint="@string/username"
-        android:layout_height="40dp" />
-    <EditText
-        android:id="@+id/et_batch"
-        android:layout_width="200dp"
-        android:hint="@string/batch"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:layout_height="40dp" />
 
     <EditText
